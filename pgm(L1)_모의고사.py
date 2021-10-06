@@ -49,7 +49,7 @@ def solution(answers):
     result = []
 
     for idx, answer in enumerate(answers):
-        if answer == pattern1[idx%len(pattern1)]:
+        if answer == pattern1[idx%len(pattern1)]:   #나머지로 idx 사용
             score[0] += 1
         if answer == pattern2[idx%len(pattern2)]:
             score[1] += 1
