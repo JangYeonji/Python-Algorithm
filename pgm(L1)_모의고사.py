@@ -18,51 +18,26 @@
 #mine --> 몇개의 테스트케이스 실패
 def solution(answers):
     answer = []
-    a1, a2, a3 = [],[],[]
+    pattern1 = [1,2,3,4,5]
+    pattern2 = [2,1,2,3,2,4,2,5]
+    pattern3 = [3,3,1,1,2,2,4,4,5,5]
+    cnt = [0,0,0]
     
-    j=1
-    for i in answers:
-        if i==j:
-            a1.append(i)
-        if j==6:
-            j=1
-        j+=1
-        
-    j=1
-    for idx, i in enumerate(answers):
-        if idx%2==0:
-            k=2
-        else:
-            k=j
-            j+=1
-        if i==k:
-            a2.append(i)
-      
-    su3 = [3,3,1,1,2,2,4,4,5,5]
-    if len(answers)>len(su3):
-        len_ = len(answers) - len(su3)
-        for a in range(0,len_):
-            su3.append(su3[a])
-    for idx, i in enumerate(answers):
-        if i==su3[idx]:
-            a3.append(i)
+    pattern1 = pattern1 * (int(len(answers)/len(pattern1))+1)
+    pattern2 = pattern2 * (int(len(answers)/len(pattern2))+1)
+    pattern3 = pattern3 * (int(len(answers)/len(pattern3))+1)
     
-    #print("{}{}{}".format(a1,a2,a3))
-    if len(a1)>len(a2) and len(a1)>len(a3):
-        answer = [1]
-    elif len(a2)>len(a1) and len(a2)>len(a3):
-        answer = [2]
-    elif len(a3)>len(a1) and len(a3)>len(a2):
-        answer = [3]
-    elif len(a1)==len(a2)==len(a3):
-        answer = [1,2,3]
-    elif len(a1)==len(a2):
-        answer = [1,2]
-    elif len(a1)==len(a3):
-        answer = [1,3]
-    elif len(a2)==len(a3):
-        answer = [2,3]
-    
+    for i in range(len(answers)):
+        if answers[i]==pattern1[i]:
+            cnt[0] += 1
+        if answers[i]==pattern2[i]:
+            cnt[1] += 1
+        if answers[i]==pattern3[i]:
+            cnt[2] += 1
+    for i in range(len(cnt)):
+        if cnt[i] == max(cnt):
+            answer.append(i+1)
+
     return answer
 
 #ㄳ
