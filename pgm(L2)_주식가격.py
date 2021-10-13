@@ -8,7 +8,7 @@ def solution(prices):
         if prices[i] < prices[stack[-1]]:  
             for j in stack[::-1]:   
                 if prices[i] < prices[j]:   
-                    answer[j] = 1  
+                    answer[j] = i-j  
                     stack.pop()
         stack.append(i)
 
