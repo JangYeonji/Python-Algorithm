@@ -1,5 +1,5 @@
-#1차시도 : 1,5 런타임에러, 2 실패
-
+#progresses = [99,99,99,99,99], speeds = [3,3,3,3,3] 테스트케이스
+#2차시도 : 2 실패
 def solution(progresses, speeds):
     queue = []
     finish = [] 
@@ -16,7 +16,7 @@ def solution(progresses, speeds):
 
     i=0
     while len(queue)>len(answer):
-        if queue[i]>queue[i+1]:
+        if queue[i]>=queue[i+1]:
             answer[i] += 1
             queue.pop(i+1)
             i-=1
