@@ -1,12 +1,11 @@
-#progresses = [99,99,99,99,99], speeds = [3,3,3,3,3] 테스트케이스
-#2차시도 : 2 실패
+import math
 def solution(progresses, speeds):
     queue = []
     finish = [] 
     
     for i in range(len(progresses)):
-        queue.append((100-progresses[i])/speeds[i]) 
-        finish.append((100-progresses[i])/speeds[i])
+        queue.append(math.ceil((100-progresses[i])/speeds[i]))
+        finish.append(math.ceil((100-progresses[i])/speeds[i]))
     
     for i in range(1, len(finish)):
         if finish[i-1]>finish[i]:
