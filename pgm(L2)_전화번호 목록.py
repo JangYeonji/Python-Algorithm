@@ -1,4 +1,7 @@
-#1차시도 - 테스트 13 실패, 효율성 1,2,3,4 실패
+#접두어만 검색하도록 고침
+#False 다음 break
+
+#2차시도 - 효율성 3,4 실패
 def solution(phone_book):
     answer = True
     dic = dict()
@@ -8,7 +11,8 @@ def solution(phone_book):
     for i in range(len(dic)):
         if i+1 == len(dic):
             break
-        if list(dic.keys())[i] in list(dic.keys())[i+1]:
+        if list(dic.keys())[i] in list(dic.keys())[i+1][:len(list(dic.keys())[i])]:
             answer = False
+            break
             
     return answer
