@@ -1,17 +1,11 @@
-#접두어만 검색하도록 고침
-#False 다음 break
-
-#2차시도 - 효율성 3,4 실패
+#3차시도 - 해시 제거
 def solution(phone_book):
     answer = True
-    dic = dict()
-    for idx,i in enumerate(sorted(phone_book)):
-        dic[i] = idx
-        
-    for i in range(len(dic)):
-        if i+1 == len(dic):
+    phone_book.sort()
+    for i in range(len(phone_book)):
+        if i+1 == len(phone_book):
             break
-        if list(dic.keys())[i] in list(dic.keys())[i+1][:len(list(dic.keys())[i])]:
+        if phone_book[i] in phone_book[i+1][:len(phone_book[i])]:
             answer = False
             break
             
