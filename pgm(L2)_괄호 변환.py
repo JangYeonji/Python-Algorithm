@@ -1,14 +1,41 @@
-#1차시도 - 테스트 2,4,6,7,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25
+#답 확인 후 일주일 후 2차시도
+def balance(p):
+    cnt = 0
+    for idx, i in enumerate(p):
+        if i=='(':
+            cnt += 1
+        else:
+            cnt -= 1
+        if cnt==0:
+            return idx+1
+def correct(w):
+    if w[0]=='(':
+        return True
+    return False
+def turn(w):
+    a = ''
+    for i in w:
+        if i=='(':
+            a+=')'
+        else:
+            a+='('
+    return a
+
 def solution(p):
     answer = ''
-    w=""
-    for i in p:
-        w += i
-        if '()' in w:
-            w=w.replace('()','')
-    if w=='':
-        answer = p
+    if p=='':
+        return ''
+    idx = balance(p)
+    u = p[:idx]
+    v = p[idx:]
+    if not correct(u):
+        empty = '('
+        empty += solution(v)
+        empty += ')'
+        empty += turn(u[1:-1])
+        answer += empty
     else:
-        for i in p[::-1]:
-            answer += i
+        answer += u
+        answer += solution(v)
+        
     return answer
