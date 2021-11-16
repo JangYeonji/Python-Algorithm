@@ -17,27 +17,40 @@
 2 4
 '''
 
+import heapq
 import sys
-input_data = sys.stdin.readline().rstrip()
-
-n,m,k,x = map(int, input_data.split()[0:4])
-graph = [[0] * (n+1) for _ in range(n+1)]
+INF = int(1e9)
+input = sys.stdin.readline
+n,m,k,x = map(int,input().split())
+graph = [[] for _ in range(n+1)]
 for i in range(m):
-    a,b = map(int,input_data.split()[4+(2*i):6+(2*i)])
-    graph[a][b] = graph[b][a] = 1
+	a,b = map(int,input().split())
+	graph[a].append((b,1))
+distance = [INF] * (n+1)
 
-visit = [False] * (n+1)
+def dijkstra(start):
+    q=[]
+    heapq.heappush(q, (0,start))
+    distance[start]=0
+    while q:
+        dist,now = heapq.heappop(q)
+        if distance[now]<dist:
+            continue
+        for i in graph[now]:
+            cost = dist+i[1]
+            if cost<distance[i[0]]:
+                distance[i[0]] = cost
+                heapq.heappush(q, (cost,i[0]))
 
-def gg(n,m,k,x,graph,visit):
-    visit[x] = True
-    for j in range(1, k+1):
-        for i in range(1,n+1):
-            if graph[j][i]==1 and visit[i]==False:
-                graph[j][i] = 1+j
-                visit[i] = True
-
-gg(n,m,k,x,graph,visit)
+dijkstra(x)
+result = []
 
 for i in range(1,n+1):
-    if graph[k][i]==1+k:
+    if distance[i]==k:
+        result.append(i)
+
+if result:
+    for i in result:
         print(i)
+else:
+    print(-1)
