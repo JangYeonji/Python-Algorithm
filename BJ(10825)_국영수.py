@@ -22,10 +22,7 @@ for i in range(n):
 	name,kor,eng,math = sys.stdin.readline().rstrip().split()
 	student[name] = [int(kor),int(eng),int(math)]
 
-student = dict(sorted(student.items(), key=lambda x:x[0]))
-student = dict(sorted(student.items(), key=lambda x:-x[1][2]))
-student = dict(sorted(student.items(), key=lambda x:x[1][1]))
-student = dict(sorted(student.items(), key=lambda x:-x[1][0]))
+student = dict(sorted(student.items(), key=lambda x:(-x[1][0],x[1][1],-x[1][2],x[0])))
 
 for i in student.keys():
     print(i)
