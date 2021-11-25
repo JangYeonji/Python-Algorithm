@@ -1,14 +1,14 @@
-'''
+'''입력 예시
 a1
-
-c2
 '''
-s = input()
 
-dx = [2,-2,1,-1]
-dy = [1,1,2,2]
-
-cnt = 0
-for i in range(4):
-    if ord(s[0]) + dx[i] <= ord('h') and ord(s[0]) + dx[i] >= ord('a') and int(s[1])+dy[i]<=8 and int(s[1])+dy[i]>=1:
-        cnt += 1
+night = input()
+count = 0
+steps = [(1,2),(1,-2),(-1,2),(-1,-2),(2,1),(2,-1),(-2,1),(-2,-1)]
+for i in steps:
+    nx = ord(night[0]) + i[0]
+    ny = int(night[1]) + i[1]
+    if nx<ord('a') or nx>ord('z') or ny<1 or ny>8:
+        continue
+    else:
+        count += 1
