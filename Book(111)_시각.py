@@ -1,12 +1,13 @@
-'''
+'''입력 예시
 5
 '''
 
-h = int(input())
+n = int(input())
+
 count = 0
-for i in range(h+1):
-	for j in range(60):
-		for k in range(60):
-			if '3' in str(i) + str(j) + str(k):
-				count += 1
+for h in range(n+1):
+    for m in range(60):
+        for s in range(60):
+            if str(n) in str(h) or str(n) in str(m) or str(n) in str(s):
+                count += 1
 print(count)
