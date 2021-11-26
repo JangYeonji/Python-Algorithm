@@ -9,4 +9,5 @@ result = len(com)
 for i in com:
 	if i[0]==i[1]:
         result -= 1
+        
 print(result)
