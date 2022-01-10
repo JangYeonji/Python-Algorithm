@@ -1,5 +1,3 @@
-from bisect import bisect_left
-
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
         def binary_search(array,target,start,end):
