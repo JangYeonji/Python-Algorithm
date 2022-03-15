@@ -1,14 +1,15 @@
-#성공
 def solution(N, stages):
-    fail = {}
+    answer = {}
+    result = []
+
+    l = len(stages)
+    stages = sorted(stages)
+    
     for i in range(1,N+1):
-        fail[i] = 0
-    total = 0
-    for i in range(N):
-        try:
-            total += stages.count(i)
-            fail[i+1] = stages.count(i+1)/(len(stages)-total)
-        except:
-            fail[i+1] = 0
-    result = dict(sorted(fail.items(), key=lambda x:-x[1]))
-    return list(result.keys())
+        answer[i] = 0
+        if i in stages:
+            answer[i] = stages.count(i) / (l - stages.index(i))
+
+    for i in sorted(answer.items(), key=lambda x:-x[1]):
+        result.append(i[0])
+    return result

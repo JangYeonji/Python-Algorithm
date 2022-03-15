@@ -1,12 +1,7 @@
 def solution(n, arr1, arr2):
     answer = []
-    
-    for x,y in zip(arr1,arr2):
-        answer.append(bin(x|y))
-    
-    answer = [x.replace("0b","") for x in answer]
-    answer = [x.zfill(n) for x in answer]
-    answer = [x.replace("1","#") for x in answer]
-    answer = [x.replace("0"," ") for x in answer]
-    
+    for i in range(n):
+        a = arr1[i] | arr2[i]
+        answer.append(str(bin(a)).replace("0b","").zfill(n).replace("1","#").replace("0"," "))
+
     return answer
