@@ -35,25 +35,47 @@
 13 L
 '''
 
+#220325
 n = int(input())
 k = int(input())
-graph = [[0]*n for _ in range(n)]
+
+graph = [[0]*(n) for i in range(n)]
 for i in range(k):
-    x, y = map(int, sys.stdin.readline().split())
-    graph[x - 1][y - 1] = 1
+    x,y = map(int,input().split())
+    graph[x-1][y-1] = 1
 l = int(input())
-xc = []
+snake = []
 for i in range(l):
-    x,c = sys.stdin.readline().split()
-    xc.append((x,c))
+    snake.append(input().split())
 
-snake = 9
-cnt = 0
-graph[0][0] = snake
+def direction(d,x,y):
+    if d=='R':
+        return x,y+1
+    elif d=='L':
+        return x,y-1
+    elif d=='U':
+        return x-1,y
+    elif d=='D':
+        return x+1,y
 
-for x,c in xc:
-    for i in range(1,int(x)+1):
-        graph[i][0] = snake
-        graph[i-1][0] = 0
-        cnt += 1
-    if c=='D':
+x,y = 0,0
+d = 'R'
+answer = 0
+idx = 0
+graph[x][y] = 9
+
+while True:
+    xx,yy = direction(d, x, y)
+    if xx>=0 and yy>=0 and xx<n and yy<n:
+        answer += 1
+        if graph[xx][yy] == 0:
+            graph[x][y] = 0
+            x,y = xx,yy
+        elif graph[x][y]==9:
+            break
+        graph[xx][yy] = 9
+        if idx<l and int(snake[idx][0])==answer:
+            d = snake[idx][1]
+            idx += 1
+    else:
+        break
