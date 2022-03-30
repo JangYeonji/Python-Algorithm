@@ -1,11 +1,11 @@
 n = int(input())
-k = list(map(int,input().split()))
+food = list(map(int,input().split()))
 
-d = [0]*100
+result = []
+result.append(food[0])
+result.append(max(food[0],food[1]))
 
-d[0] = k[0]
-d[1] = max(k[0],k[1])
 for i in range(2,n):
-	d[i] = max(d[i-1], d[i-2]+k[i])
-
-print(d[n-1])
+    result.append(max(food[i-1],food[i-2]+food[i]))
+    
+print(result[-1])
