@@ -1,34 +1,30 @@
-'''입력예시
-4
-3
-4
-1
-1
-
-4
-6
-2
-2
-3
-3
-4
-4
-'''
-
 g = int(input())
 p = int(input())
-gate = [0]*(g+1)
-cnt = 0
-for i in range(p):
-    air = int(input())
-    brk = 0
-    for a in range(air, 0, -1):
-        if gate[a] == 0:
-            gate[a] = air
-            cnt += 1
-            break
-        else:
-            brk += 1
-    if brk==air:
+
+def find_parent(parent,x):
+    if parent[x]!=x:
+        parent[x] = find_parent(parent,parent[x])
+    return parent[x]
+
+def union_parent(parent,a,b):
+    a = find_parent(parent,a)
+    b = find_parent(parent,b)
+    if a<b:
+        parent[b] = a
+    else:
+        parent[a] = b
+        
+parent = [0]*(g+1)
+for i in range(g+1):
+    parent[i] = i
+    
+answer = 0
+
+for _ in range(p):
+    tmp = find_parent(parent, int(input()))
+    if tmp == 0:
         break
-print(cnt)
+    tmp = union_parent(parent, tmp, tmp - 1)
+    answer += 1
+    
+print(answer)
