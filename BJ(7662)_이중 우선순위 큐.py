@@ -10,10 +10,14 @@ t = int(input())
 for tt in range(t):
     k = int(input())
     queue = []
+    s = set()
 
     for i in range(k):
         a, b = input().split()
+        
         if a == 'I':
+            if b in s:
+                continue
             heapq.heappush(queue,int(b))
         else:
             if queue == []:
@@ -22,7 +26,8 @@ for tt in range(t):
                 heapq.heappop(queue)
             else:
                 queue.pop()
-            
+        s.add(b)
+
     if queue == []:
         print("EMPTY")
     else:
